@@ -17,7 +17,7 @@ class App extends Component{
       {
         id: 3,
         title: 'Capitulo 3',
-        body: 'Corpo 3'
+        body: 'O Corpo 3'
       }
     ]
   }
