@@ -3,6 +3,7 @@ import './App.css';
 
 class App extends Component{
   state = {
+    counter:0,
     posts:[
       {
         id: 1,
@@ -21,11 +22,32 @@ class App extends Component{
       }
     ]
   }
+  timeoutUpdate = null;
+  //geralmente usado pra fazer a requisição pra uma API
+  componentDidMount(){
+    this.handleTimeout()
+  }
 
+  componentDidUpdate(){
+    this.handleTimeout();
+  }
+
+  componentWillUnmount(){
+    clearTimeout(this.timeoutUpdate)
+  }
+
+  handleTimeout = () =>{
+    const {posts, counter} = this.state
+    posts[0].title = 'testando aula'
+        setTimeout(() => {
+          this.setState({posts, counter: counter + 1 })
+        },5000)
+  }
   render(){
-    const {posts} = this.state;
+    const {posts, counter} = this.state;
     return(
       <div className='App'>
+          <h1>{counter}</h1>
           {
             posts.map(post => (
               <div key={post.id}>
